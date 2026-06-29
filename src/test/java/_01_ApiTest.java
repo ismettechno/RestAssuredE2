@@ -90,9 +90,26 @@ public class _01_ApiTest {
                 .body("places[2].'place name'", equalTo("Dörtağaç Köyü")) // 2 indexdeki eleman buna eşit mi
                 .body("places.'place name'", hasItem("Dörtağaç Köyü"))  // tum placelerde bu eleman var mı
                 ;
-
     }
 
+    @Test
+    public void bodyArrayHasSizeTest()
+    {
+        // Soru : "http://api.zippopotam.us/us/90210"  endpoint in dönen Places dizisinin
+        // boyutunun 1 olduğunu doğrulayınız.
+
+        given()
+
+                .when()
+                .get("http://api.zippopotam.us/us/90210")
+
+                .then()
+                .log().body()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("places", hasSize(1))
+        ;
+    }
 
 
 
