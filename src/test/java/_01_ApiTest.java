@@ -72,6 +72,26 @@ public class _01_ApiTest {
         ;
     }
 
+    @Test
+    public void checkHasItem() {
+        // Soru : "http://api.zippopotam.us/tr/01000"  endpoint in dönen
+        // places dizisinin herhangi bir elemanında  "Dörtağaç Köyü" değerinin
+        // olduğunu doğrulayınız
+
+        given()
+
+                .when()
+                .get("http://api.zippopotam.us/tr/01000")
+
+                .then()
+                .log().body()
+                .statusCode(200)  // status code 200 mü
+                .contentType(ContentType.JSON)
+                .body("places[2].'place name'", equalTo("Dörtağaç Köyü")) // 2 indexdeki eleman buna eşit mi
+                .body("places.'place name'", hasItem("Dörtağaç Köyü"))  // tum placelerde bu eleman var mı
+                ;
+
+    }
 
 
 
