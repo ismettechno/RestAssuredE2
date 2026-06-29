@@ -111,6 +111,23 @@ public class _01_ApiTest {
         ;
     }
 
+    @Test
+    public void combiningTest() {
+        given()
+
+                .when()
+                .get("http://api.zippopotam.us/us/90210")
+
+                .then()
+                .log().body()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("places", hasSize(1))  // dizinin uzunluğu 1 mi
+                .body("country", equalTo("United States"))  // country United States ye eşit mi
+                .body("places.'place name'", hasItem("Beverly Hills")) // contains
+        ;
+
+    }
 
 
 }
