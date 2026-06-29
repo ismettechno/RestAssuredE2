@@ -2,6 +2,7 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 public class _01_ApiTest {
 
@@ -50,6 +51,28 @@ public class _01_ApiTest {
                 .contentType(ContentType.JSON)  // dönen datanın formatı JSON mı
         ;
     }
+
+    @Test
+    public void checkCountryInResponseBody()
+    {
+        given()
+
+                .when()
+                .get("http://api.zippopotam.us/us/90210")
+
+                .then()
+                .log().body()
+                .statusCode(200)  // status code 200 mü
+                .contentType(ContentType.JSON)  // dönen datanın formatı JSON mı
+                .body("country", equalTo("United States")); // country == "United States"
+
+        // country yi dışarı almadan
+        // bulundu yeri (path i) vererek içerde assertion yapıyorum.
+        // Bunu hamcrest kütüphanesi yapıyor
+        ;
+    }
+
+
 
 
 
