@@ -19,8 +19,22 @@ public class _01_ApiTest {
                 .then()
                 //3.bölümlerle ilgili işler: gelen data, assert,test
         ;
-
     }
+
+    @Test
+    public void statusCodeTest() {
+
+        given()
+
+                .when()
+                .get("http://api.zippopotam.us/us/90210")
+
+                .then()
+                .log().body()  // dönüş datasını gösterir  all: bütün bilgiler
+                .statusCode(200) // dönen status kod 200 e eşitmi ?, assert
+                ;
+    }
+
 
 
 }
