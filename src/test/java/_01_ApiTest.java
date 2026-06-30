@@ -144,9 +144,24 @@ public class _01_ApiTest {
                 .log().body()
                 .statusCode(200)
         ;
-
     }
 
+    @Test
+    public void queryParamTest() {
+     //https://gorest.co.in/public/v1/users?page=3
+
+        given()
+                .queryParam("page",3)
+                .log().uri()
+
+                .when()
+                .get("https://gorest.co.in/public/v1/users")
+
+                .then()
+                .log().body()
+                ;
+
+    }
 
 
 
