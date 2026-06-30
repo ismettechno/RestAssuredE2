@@ -24,6 +24,29 @@ public class _03_ApiTestExtract {
 
         System.out.println("ulke = " + ulke);
         Assert.assertEquals(ulke, "United States", "Ülke değeri beklenen değil");
+        //Assert.assertTrue( ulke.equals("United States"), "Ülke değeri beklenen değil" );
+    }
+
+
+    @Test
+    public void extractingJsonPath2() {
+        // Soru : "https://gorest.co.in/public/v1/users"  endpoint in den dönen
+        // limit bilgisinin 10 olduğunu testNG ile doğrulayınız.
+
+        int limit=
+        given()
+
+                .when()
+                .get("https://gorest.co.in/public/v1/users")
+
+                .then()
+                .log().body()
+                .extract().path("meta.pagination.limit")
+        ;
+
+        System.out.println("limit = " + limit);
+        Assert.assertTrue( limit==10);
+
     }
 
 }
