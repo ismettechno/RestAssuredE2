@@ -129,5 +129,27 @@ public class _01_ApiTest {
 
     }
 
+    @Test
+    public void pathParamTest(){
+
+        given()
+                .pathParam("ulke", "us")  // değişkenler hazırlandı
+                .pathParam("pk", "90210")
+                .log().uri() // oluşacak endpoint i yazdıralım
+
+                .when()
+                .get("http://api.zippopotam.us/{ulke}/{pk}")
+
+                .then()
+                .log().body()
+                .statusCode(200)
+        ;
+
+    }
+
+
+
+
+
 
 }
