@@ -1,5 +1,6 @@
 
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -83,6 +84,32 @@ public class _03_ApiTestExtract {
                 .extract().path("data.name");
 
         System.out.println("nameler = " + nameler);
+        Assert.assertTrue(nameler.contains("Anusuya Reddy JD"));
+    }
+
+    @Test
+    public void extractingJsonPathResponsAll() {
+
+        Response donenBody=
+        given()
+
+                .when()
+                .get("https://gorest.co.in/public/v1/users")
+
+                .then()
+                .log().body()
+                .extract().response();
+
+        int limit= donenBody.path("meta.pagination.limit");
+        ArrayList<Integer> idler=donenBody.path("data.id");
+        ArrayList<String> nameler=donenBody.path("data.name");
+
+        System.out.println("limit = " + limit);
+        System.out.println("idler = " + idler);
+        System.out.println("nameler = " + nameler);
+
+        Assert.assertTrue(limit == 10);
+        Assert.assertTrue(idler.contains(8531303));
         Assert.assertTrue(nameler.contains("Anusuya Reddy JD"));
     }
 
