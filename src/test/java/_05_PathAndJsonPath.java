@@ -31,6 +31,7 @@ public class _05_PathAndJsonPath {
     @Test
     public void extractingPath2()
     {
+        // Aşağıdaki kod otomatik dönüşüm yapamadığından hata verecektir
         int postCode=
                 given()
                         .when()
