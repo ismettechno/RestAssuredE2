@@ -13,16 +13,15 @@ public class _03_ApiTestExtract {
     @Test
     public void extractingJsonPath() {
 
-        String ulke=
-        given()
+        String ulke =
+                given()
 
-                .when()
-                .get("http://api.zippopotam.us/us/90210")
+                        .when()
+                        .get("http://api.zippopotam.us/us/90210")
 
-                .then()
-                .log().body()
-                .extract().path("country")
-        ;
+                        .then()
+                        .log().body()
+                        .extract().path("country");
 
         System.out.println("ulke = " + ulke);
         Assert.assertEquals(ulke, "United States", "Ülke değeri beklenen değil");
@@ -35,38 +34,46 @@ public class _03_ApiTestExtract {
         // Soru : "https://gorest.co.in/public/v1/users"  endpoint in den dönen
         // limit bilgisinin 10 olduğunu testNG ile doğrulayınız.
 
-        int limit=
-        given()
+        int limit =
+                given()
 
-                .when()
-                .get("https://gorest.co.in/public/v1/users")
+                        .when()
+                        .get("https://gorest.co.in/public/v1/users")
 
-                .then()
-                .log().body()
-                .extract().path("meta.pagination.limit")
-        ;
+                        .then()
+                        .log().body()
+                        .extract().path("meta.pagination.limit");
 
         System.out.println("limit = " + limit);
-        Assert.assertTrue( limit==10);
+        Assert.assertTrue(limit == 10);
 
     }
 
     @Test
     public void extractingJsonPath3() {
 
-        ArrayList<Integer> idler=
-        given()
+        ArrayList<Integer> idler =
+                given()
 
-                .when()
-                .get("https://gorest.co.in/public/v1/users")
+                        .when()
+                        .get("https://gorest.co.in/public/v1/users")
 
-                .then()
-                //.log().body()
-                .extract().path("data.id")
-        ;
+                        .then()
+                        //.log().body()
+                        .extract().path("data.id");
 
         System.out.println("idler = " + idler);
         Assert.assertTrue(idler.contains(8531303));
     }
+
+    @Test
+    public void extractingJsonPath4() {
+        // Soru : "https://gorest.co.in/public/v1/users"  endpoint in den dönen
+        // bütün name leri in içinde "Anusuya Reddy JD" değerinin geçtiğini
+        // TestNg assertion ile doğrulayınız.
+
+
+    }
+
 
 }
