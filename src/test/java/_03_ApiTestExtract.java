@@ -3,6 +3,8 @@ import io.restassured.http.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -47,6 +49,24 @@ public class _03_ApiTestExtract {
         System.out.println("limit = " + limit);
         Assert.assertTrue( limit==10);
 
+    }
+
+    @Test
+    public void extractingJsonPath3() {
+
+        ArrayList<Integer> idler=
+        given()
+
+                .when()
+                .get("https://gorest.co.in/public/v1/users")
+
+                .then()
+                //.log().body()
+                .extract().path("data.id")
+        ;
+
+        System.out.println("idler = " + idler);
+        Assert.assertTrue(idler.contains(8531303));
     }
 
 }
