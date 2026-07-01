@@ -1,3 +1,4 @@
+import Model.ToDo;
 import Model.ZipCode;
 import org.testng.annotations.Test;
 
@@ -28,8 +29,17 @@ public class _04_ApiTestPOJO {
          * Converting Into POJO body data and write
          */
 
+        ToDo todoNesnesi=
+        given()
 
+                .when()
+                .get("https://jsonplaceholder.typicode.com/todos/2")
 
+                .then()
+                .extract().body().as(ToDo.class)
+        ;
+
+        System.out.println("todoNesnesi = " + todoNesnesi);
     }
 
 
