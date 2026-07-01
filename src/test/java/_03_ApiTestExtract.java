@@ -97,7 +97,7 @@ public class _03_ApiTestExtract {
                 .get("https://gorest.co.in/public/v1/users")
 
                 .then()
-                .log().body()
+                //.log().body()
                 .extract().response();
 
         int limit= donenBody.path("meta.pagination.limit");
