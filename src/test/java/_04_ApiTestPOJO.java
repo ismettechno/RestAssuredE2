@@ -21,5 +21,17 @@ public class _04_ApiTestPOJO {
 
     }
 
+    @Test
+    public void Task1(){
+        /** Task 1
+         * create a request to https://jsonplaceholder.typicode.com/todos/2
+         * Converting Into POJO body data and write
+         */
+
+
+
+    }
+
+
 
 }
